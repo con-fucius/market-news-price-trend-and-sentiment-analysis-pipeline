@@ -1,5 +1,7 @@
 import openai
 import anthropic
+
+
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from langchain.agents import initialize_agent, AgentType
@@ -9,8 +11,8 @@ from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 
 # Set your API keys
-OPENAI_API_KEY = 'your_openai_api_key'  # Replace with your OpenAI API key
-ANTHROPIC_API_KEY = 'your_anthropic_api_key'  # Replace with your Anthropic API key
+OPENAI_API_KEY = 'your_openai_api_key'  # Use your OpenAI API key
+ANTHROPIC_API_KEY = 'your_anthropic_api_key'  # Use your Anthropic API key
 
 # Initialize OpenAI and Anthropic API clients
 openai.api_key = OPENAI_API_KEY
