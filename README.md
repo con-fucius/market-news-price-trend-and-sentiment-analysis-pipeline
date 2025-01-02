@@ -38,12 +38,7 @@ pip install openai langchain requests pandas nltk matplotlib pyLDAvis gensim
 ### Additional Setup
 
 - **API Keys**:
-  - Add your `OpenAI`, `NewsAPI`, and `CurrentsAPI` keys to the script:
-    ```python
-    openai.api_key = 'your-openai-api-key'
-    NEWS_API_KEY = 'your-news-api-key'
-    CURRENTS_API_KEY = 'your-currents-api-key'
-    ```
+  - Add your `OpenAI`, `NewsAPI`, and `CurrentsAPI` keys to the script
 
 - **Download NLTK Data**:
   The script uses NLTK for tokenization and stopword removal. Ensure the required datasets are downloaded:
