@@ -1,4 +1,4 @@
-# Blockchain News Analysis with AI
+# Blockchain News, Price Trend and Sentiment Analysis with AI
 
 This repository provides a Python script for analyzing blockchain-related news using APIs, AI-based text summarization, sentiment analysis, and topic modeling. It combines tools like OpenAI, LangChain, and Gensim to extract insights and visualize trends in the blockchain space.
 
