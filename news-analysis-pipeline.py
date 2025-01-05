@@ -1,4 +1,4 @@
-# Install required packages
+# Installing required packages
 !pip install openai langchain requests pandas nltk matplotlib pyLDAvis gensim
 
 import openai
@@ -17,7 +17,7 @@ from gensim import corpora
 from gensim.models import LdaModel
 import nltk
 
-# Initialize OpenAI API key
+# Initializing OpenAI API key
 openai.api_key = 'your-openai-api-key'
 
 # NewsAPI endpoint and API key (for additional news source)
@@ -28,7 +28,7 @@ NEWS_API_URL = "https://newsapi.org/v2/everything"
 CURRENTS_API_KEY = 'your-currents-api-key'
 CURRENTS_API_URL = "https://api.currentsapi.services/v1/search"
 
-# Fetch Blockchain News from NewsAPI
+# Fetching Blockchain-related News from NewsAPI
 def fetch_blockchain_news():
     params = {
         'q': 'blockchain',
@@ -43,7 +43,7 @@ def fetch_blockchain_news():
     else:
         return []
 
-# Fetch Blockchain News from Currents API (Alternative source)
+# Fetching Blockchain News from Currents API (Alternative source)
 def fetch_blockchain_news_currents():
     params = {
         'keywords': 'blockchain',
@@ -57,13 +57,13 @@ def fetch_blockchain_news_currents():
     else:
         return []
 
-# Combine results from both APIs
+# Combining results from both APIs
 def fetch_combined_news():
     news_from_newsapi = fetch_blockchain_news()
     news_from_currents = fetch_blockchain_news_currents()
     return news_from_newsapi + news_from_currents
 
-# Summarize Articles Using OpenAI's LLM
+# Summarizing Articles Using OpenAI's LLM
 llm = OpenAI(model="text-davinci-003", temperature=0.7)
 
 def summarize_article(article):
@@ -80,7 +80,7 @@ def analyze_sentiment(text):
     sentiment = response.content.strip().lower()
     return sentiment
 
-# Process News Articles to Summarize and Analyze Sentiment
+# Processing News Articles to Summarize and Analyze Sentiment
 def process_articles(articles):
     summarized_articles = [(article['title'], summarize_article(article)) for article in articles]
     sentiments = [(title, summarize, analyze_sentiment(summarize)) for title, summarize in summarized_articles]
@@ -126,17 +126,17 @@ def identify_trend(sentiment_counts):
 
 # Main Execution
 
-# Fetch combined blockchain news
+# Fetching combined blockchain news
 articles = fetch_combined_news()
 
-# Summarize and analyze sentiment of articles
+# Summarizing and analyzing sentiment of articles
 summarized_articles, sentiments = process_articles(articles)
 
-# Extract text for topic modeling (use summaries for topic modeling)
+# Extracting text for topic modeling (use summaries for topic modeling)
 texts_for_topic_modeling = [summarize for _, summarize in summarized_articles]
 topics = perform_topic_modeling(texts_for_topic_modeling)
 
-# Display identified topics
+# Displaying identified topics
 print("Identified Topics:")
 for topic in topics:
     print(topic)
