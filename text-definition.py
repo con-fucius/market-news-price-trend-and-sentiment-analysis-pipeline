@@ -14,11 +14,11 @@ from langchain.chains import LLMChain
 OPENAI_API_KEY = 'your_openai_api_key'  # Use your OpenAI API key
 ANTHROPIC_API_KEY = 'your_anthropic_api_key'  # Use your Anthropic API key
 
-# Initialize OpenAI and Anthropic API clients
+# Initializing OpenAI and Anthropic API clients
 openai.api_key = OPENAI_API_KEY
 anthropic_client = anthropic.Client(ANTHROPIC_API_KEY)
 
-# Step 1: Define Prompts
+# Defining Prompts
 definition_prompt = PromptTemplate(
     input_variables=["term"],
     template="Please provide the definition of the term: {term}."
@@ -34,16 +34,16 @@ antonym_prompt = PromptTemplate(
     template="Provide some antonyms (opposites) for the word: {term}."
 )
 
-# Step 2: Initialize LLMs (OpenAI for definition, Anthropic for synonyms, and OpenAI for antonyms)
+# Initializing LLMs (OpenAI for definition, Anthropic for synonyms, and OpenAI for antonyms)
 openai_llm = OpenAI(model="gpt-4", openai_api_key=OPENAI_API_KEY)
 anthropic_llm = Anthropic(model="claude-1", anthropic_api_key=ANTHROPIC_API_KEY)
 
-# Step 3: Define Chains for each task (definition, synonyms, antonyms)
+# Defining Chains for each task (definition, synonyms, antonyms)
 definition_chain = LLMChain(prompt=definition_prompt, llm=openai_llm)
 synonym_chain = LLMChain(prompt=synonym_prompt, llm=anthropic_llm)
 antonym_chain = LLMChain(prompt=antonym_prompt, llm=openai_llm)
 
-# Step 4: Define Main Function to Run the Agent
+# Defining Main Function to Run the Agent
 def get_term_info(term):
     print(f"Fetching information for the term: {term}\n")
     
@@ -59,6 +59,6 @@ def get_term_info(term):
     antonyms = antonym_chain.run(term=term)
     print(f"Antonyms of {term}:\n{antonyms}\n")
 
-# Test the agent with an example term
+# Testing the agent with an example term
 term = "happy"
 get_term_info(term)
